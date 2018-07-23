@@ -5,11 +5,13 @@
            <h4>欢迎登陆TodoList</h4>
            <input type="text" v-model="msg" placeholder="请输入用户名">
            <button @click="login">登陆</button>
+           {{userInfo}}
        </form>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     name:'login',
     data(){
@@ -25,7 +27,13 @@ export default {
             }
             this.$router.replace('/list/'+this.msg);
         }
-    }
+    },
+    computed:{
+        ...mapState({
+            userInfo: state => state.commons.userInfo
+        })
+    },
+
 }
 </script>
 
